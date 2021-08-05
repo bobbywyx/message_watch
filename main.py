@@ -64,6 +64,10 @@ in_built_message = (
 
 
 # menus
+menu_watch = ('update time', )
+menu_message = ('All', 'ls', 'ry', 'settings',)
+menu_settings = ('oled contrast', 'sound', 'move', 'server test')
+menu_chat = ('send', 'record',)
 
 
 class EventManager:
@@ -115,13 +119,14 @@ def battery_power():
 
 def removing_joggle(old = utime.ticks_ms()):
     new = utime.ticks_ms()
-    print(utime.ticks_diff(old,new))
+    # print(utime.ticks_diff(old,new))
     if utime.ticks_diff(old,new) >=-200 and utime.ticks_diff(old,new) <1000:
-        print('removed joggle')
+        # print('removed joggle')
         return False
     else:
-        print('no joggle')
+        # print('no joggle')
         return True
+
 
 # system
 class Watch:
@@ -129,21 +134,21 @@ class Watch:
         self.state = state
         self.addr = addr
         self.tul = tul
-        self.array = None
-        self.name = name
+        self.array = None  #menu模式的指针
+        self.name = name   #自己的设备名称
         self.rxData = bytes()
         self.txData = b'hello world\n\r'
+        self.target = None  #聊天对象
         self.time_start = int(time.time())
-        self.em = EventManager()
         self.rxMessage = ''
-        self.real_time_delta = 1627564467 - time.time() + 28800  # 28800是+8时区
-        self.father_path = None
-        self.working_dir = None
+        self.real_time_delta = 1628006691 - time.time() + 28800  # 28800是+8时区
+        self.father_dir = None
+        self.working_menu = None
         self.ticks = utime.ticks_ms()
         self.oled_element = [None, None, None, False, None,
-                             False, False, False, False, None]
+                             False, False, False, False, None,None]
                              # 'headleft' 'headmid' 'headright' 'headdivide' 'highlighter'
-                                #  'midlrchange' 'midtime' 'middate'  'middivide' 'midgfc'
+                                #  'midlrchange' 'midtime' 'middate'  'middivide' 'midgfc' 'menu'
 
     def main(self):
         self.opt(0)
@@ -164,24 +169,46 @@ class Watch:
                 # print('watch mode')
                 timenow = time.localtime(time.time() + self.real_time_delta)
                 self.oled_element = [battery_power(), 'wyx', None, True, None,
-                                     False, timenow, timenow, False, None]
+                                     False, timenow, timenow, False, None, None]
                 self.generator()
                 self.display_main()
                 time.sleep(0.1)
-                print(timenow)
+                # print(timenow)
             while self.state == "Message":
+                self.oled_element = [battery_power(), 'wyx', None, True, None,
+                                     False, None, None, False, None, None]
+                self.array = 0
+                self.state = 'Menu'
+                self.working_menu = menu_message
+                # 进入message模式会直接跳转到menu模式 同时配置menu模式所需参数
+                self.father_dir = 'Watch'
+                self.menu_page_scroll()
                 # print('message mode')
                 time.sleep(0.1)
+            while self.state == 'Menu':
+                # 进入menu之前要进行配置 包括father_dir  working_menu state  array提前归零
+                # 配置menu对象 通常是list或者tuple  同时要配置oled_element
+                # menu模式有单独的渲染逻辑
+                self.oled_element[4] = self.array
+                self.generator()
+                self.display_main()
+                print('mm')
+                time.sleep(0.1)
+            while self.state == 'Chat':
+                # chat模式是特殊的模式  包括了menu模式 但在聊天室里不包括menu逻辑
                 pass
+                time
             time.sleep(0.1)
+            print('home')
 
-    def opt(self,od):
-        if od ==0:
+    def opt(self, od):
+        if od == 0:
             back_button.irq(lambda pin: self.opt_back(), Pin.IRQ_FALLING)
             navi_button.irq(lambda pin: self.opt_navi(), Pin.IRQ_FALLING)
             enter_button.irq(lambda pin: self.opt_enter(), Pin.IRQ_FALLING)
-        elif od ==1:
+        elif od == 1:
             self.ticks = utime.ticks_ms()
+
     def generator(self):
         oled.fill(0)
         if self.oled_element[0]:
@@ -196,9 +223,10 @@ class Watch:
         if self.oled_element[3]:
             # headdivide
             oled.hline(0, 8, 128,1)
-        if self.oled_element[4]:
+        if self.oled_element[4] or self.array == 0:
             # highlighter
-            oled.text(str(self.oled_element[4]),0,0)
+            oled.hline(0,(self.array % 6)*9+9,128,1)
+            oled.hline(0,(self.array % 6)*9+17,128,1)
         if self.oled_element[5]:
             # mdlrchange
             pass
@@ -215,41 +243,111 @@ class Watch:
         if self.oled_element[9]:
             # midgfc
             pass
+        if self.oled_element[10]:
+            # menu
+            for i in range(len(self.oled_element[10])):
+                oled.text(str(self.oled_element[10][i]),4,10+9*i)
 
     def opt_back(self):
-        print('opt back')
-
         if removing_joggle(self.ticks):
+            print('opt back')
             if self.state == "Low power":
                 pass
             elif self.state == "Message":
-                self.state = 'Watch'
+                # self.state = 'Watch'
+                # 在message停留的时间应该会相当短 不会用到back操作
+                pass
             elif self.state == "Watch":
                 self.state = 'Low power'
+            elif self.state == 'Chat':
+                self.state = 'Message'
+            elif self.state == 'Menu':
+                if self.father_dir == 'Watch':
+                    self.state = 'Watch'
+                    self.working_menu = None
+                    self.father_dir = None
+                    self.array = None
+                elif self.father_dir == 'Message':
+                    self.state = 'Message'
+
         self.opt(1)
 
     def opt_enter(self):
-        print('opt enter')
+
         if removing_joggle(self.ticks):
+            print('opt enter')
             if self.state == "Low power":
                 self.state = "Watch"
             elif self.state == "Message":
                 pass
+                # 在message停留的时间应该会相当短 不会用到enter操作
             elif self.state == "Watch":
                 self.state = "Message"
+            elif self.state == "Menu":
+
+
+                if self.working_menu[self.array] == 'update time':
+                    print(self.working_menu[self.array])
+                    self.time_correction()
+
+                elif self.working_menu[self.array] == 'settings':
+                    self.oled_element = [battery_power(), 'wyx', None, True, None,
+                                         False, None, None, False, None, None]
+                    self.working_menu = menu_settings
+                    self.array=0
+                    self.father_dir = 'Message'
+                    self.menu_page_scroll()
+                    time.sleep(0.05)
+                elif self.working_menu == menu_message:
+                    print(self.working_menu[self.array])
+                    self.state ='Chat'
+                    self.target = self.working_menu[self.array]
+
+                elif self.working_menu[self.array]=='server test':
+                    print(self.working_menu[self.array])
+                    self.server_test()
+
+                #以下为次级目录的选项
 
         self.opt(1)
+
     def opt_navi(self):
-        print('opt navi')
+
         if removing_joggle(self.ticks):
+            print('opt navi')
             if self.state == "Low power":
                 pass
+            elif self.state=='Menu':
+                self.array +=1
+                if self.array % 6 ==0:
+                    self.menu_page_scroll()
+                if self.array == len(self.working_menu):
+                    self.array = 0
+                    self.menu_page_scroll()
+                self.oled_element[4] = self.array
             elif self.state == "Message":
                 pass
-            elif self.state == "Watch":
-                pass
+                #在message停留的时间应该会相当短 不会用到navi操作
+            elif self.state == 'Watch':
+                self.state = 'Menu'
+                self.working_menu = menu_watch
+                self.oled_element = [battery_power(), 'wyx', None, True, None,
+                                     False, None, None, False, None, None]
+                self.father_dir = 'Watch'
+                self.array = 0
+                self.menu_page_scroll()
 
         self.opt(1)
+
+    def menu_page_scroll(self):
+        if len(self.working_menu)-self.array <= len(self.working_menu) % 6:
+            # 此处逻辑判断是当array遍历到最后六项（可能不足六项的情况）避免超出元组范围
+            self.oled_element[10] = self.working_menu[(self.array//6)*6:len(self.working_menu)]
+        else:
+            self.oled_element[10] = self.working_menu[(self.array // 6) * 6:(self.array // 6+1) * 6]
+
+
+
     def display_main(self):
 
         if self.state == "Low power":
@@ -257,6 +355,10 @@ class Watch:
         else:
             oled.poweron()
             if self.state == "Watch":
+                oled.show()
+            elif self.state == 'Menu':
+                oled.show()
+            elif self.state =='Chat':
                 oled.show()
 
     def message(self, opt):
@@ -276,6 +378,15 @@ class Watch:
     def delta_t(self, start_time):
         return time.time() - start_time
 
+    def server_test(self):
+        self.txData = b'test'
+        self.message('s')
+        time.sleep(0.1)
+        self.message('r')
+        if self.rxMessage:
+            return True
+        else:
+            return False
     def time_correction(self):
         self.txData = b'check time'
         self.message('s')
