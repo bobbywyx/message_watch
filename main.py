@@ -1,8 +1,7 @@
 import time
 import utime
-import framebuf
 from ssd1306 import SSD1306_I2C
-from machine import Pin, UART, I2C
+from machine import Pin, UART, I2C, PWM
 import _thread as threading  # 因为micro python里面没有threading库  已经写好的class直接套用_thread
 
 # config
@@ -13,8 +12,13 @@ HEIGHT = 64
 i2c = I2C(0)  # Init I2C using I2C0 defaults,SCL=Pin(GP9), SDA=Pin(GP8), freq=400000
 oled = SSD1306_I2C(WIDTH, HEIGHT, i2c)  # Init oled display
 oled.poweron()
-oled.contrast(1)
 oled.fill(0)
+oledcontrast = 3
+oled.contrast(int(oledcontrast*25.2)+1)
+
+chat_record = {'All':['1','2','3','4','5','6','7','8','9',10,11,12,13,14,15,16,17,18,19,20],
+               'ls':[],
+               'ry':[]}
 
 lora_addr = "00"
 lora_tul = "00"
@@ -29,6 +33,12 @@ uart1_power_pin = Pin(22, Pin.OUT)
 back_button = Pin(5, Pin.IN, Pin.PULL_UP)
 navi_button = Pin(4, Pin.IN, Pin.PULL_UP)
 enter_button = Pin(3, Pin.IN, Pin.PULL_UP)
+
+motorpin =PWM(Pin(22))
+motorpin.freq(1000)
+sound = 3
+move = 3
+
 
 # in built message
 in_built_message = (
@@ -67,8 +77,9 @@ in_built_message = (
 menu_watch = ('update time', )
 menu_message = ('All', 'ls', 'ry', 'settings',)
 menu_settings = ('oled contrast', 'sound', 'move', 'server test')
-menu_chat = ('send', 'record',)
+menu_chat = ('send', 'record','load')
 
+direct_func_names = ('update_time','server_test','send','record','load') # 函数本身和显示函数名只有空格和下划线差距的函数
 
 class EventManager:
     def __init__(self):
@@ -192,14 +203,26 @@ class Watch:
                 self.oled_element[4] = self.array
                 self.generator()
                 self.display_main()
-                print('mm')
                 time.sleep(0.1)
             while self.state == 'Chat':
+                self.oled_element = [battery_power(), 'wyx', None, True, None,
+                                     False, None, None, False, None, None]
+
+                self.father_dir = "Message"
+                self.message_page_scroll(chat_record[self.target][-6:])
+                self.generator()
+                self.display_main()
                 # chat模式是特殊的模式  包括了menu模式 但在聊天室里不包括menu逻辑
-                pass
-                time
+                time.sleep(0.1)
+            while self.state == "Record":
+                self.oled_element = [battery_power(), 'wyx', None, True, None,
+                                     False, None, None, False, None, None]
+                self.message_page_scroll(chat_record[self.target])
+                self.generator()
+                self.display_main()
+                time.sleep(0.1)
             time.sleep(0.1)
-            print('home')
+
 
     def opt(self, od):
         if od == 0:
@@ -223,7 +246,7 @@ class Watch:
         if self.oled_element[3]:
             # headdivide
             oled.hline(0, 8, 128,1)
-        if self.oled_element[4] or self.array == 0:
+        if self.oled_element[4] is not None:
             # highlighter
             oled.hline(0,(self.array % 6)*9+9,128,1)
             oled.hline(0,(self.array % 6)*9+17,128,1)
@@ -269,7 +292,16 @@ class Watch:
                     self.array = None
                 elif self.father_dir == 'Message':
                     self.state = 'Message'
-
+                elif self.father_dir == 'Chat':
+                    self.state = 'Chat'
+                    self.array = -1
+            elif self.state == 'Column':
+                self.state = 'Message'
+            elif self.state == 'Record':
+                self.state = 'Menu'
+                self.array = 0
+                self.working_menu = menu_chat
+                self.menu_page_scroll()
         self.opt(1)
 
     def opt_enter(self):
@@ -283,14 +315,23 @@ class Watch:
                 # 在message停留的时间应该会相当短 不会用到enter操作
             elif self.state == "Watch":
                 self.state = "Message"
+
+            elif self.state == 'Column':
+                self.opt_back()
+
             elif self.state == "Menu":
 
+                target = self.working_menu[self.array]
 
-                if self.working_menu[self.array] == 'update time':
-                    print(self.working_menu[self.array])
-                    self.time_correction()
+                if target in ('oled contrast', 'sound', 'move'):
+                    self.column()
 
-                elif self.working_menu[self.array] == 'settings':
+                elif target.replace(' ','_') in direct_func_names:
+                    print('direct func')
+                    eval('watch.'+target.replace(' ','_')+'()')
+                    # eval('watch.opt_back()')
+
+                elif target == 'settings':
                     self.oled_element = [battery_power(), 'wyx', None, True, None,
                                          False, None, None, False, None, None]
                     self.working_menu = menu_settings
@@ -298,16 +339,13 @@ class Watch:
                     self.father_dir = 'Message'
                     self.menu_page_scroll()
                     time.sleep(0.05)
+
                 elif self.working_menu == menu_message:
-                    print(self.working_menu[self.array])
+
                     self.state ='Chat'
                     self.target = self.working_menu[self.array]
+                    self.array = -1
 
-                elif self.working_menu[self.array]=='server test':
-                    print(self.working_menu[self.array])
-                    self.server_test()
-
-                #以下为次级目录的选项
 
         self.opt(1)
 
@@ -328,6 +366,8 @@ class Watch:
             elif self.state == "Message":
                 pass
                 #在message停留的时间应该会相当短 不会用到navi操作
+            elif self.state == "Column":
+                self.column()
             elif self.state == 'Watch':
                 self.state = 'Menu'
                 self.working_menu = menu_watch
@@ -336,7 +376,14 @@ class Watch:
                 self.father_dir = 'Watch'
                 self.array = 0
                 self.menu_page_scroll()
-
+            elif self.state == "Chat":
+                self.state = 'Menu'
+                self.working_menu =menu_chat
+                self.father_dir = 'Chat'
+                self.array +=1
+                self.menu_page_scroll()
+            elif self.state == "Record":
+                self.array+=1
         self.opt(1)
 
     def menu_page_scroll(self):
@@ -346,25 +393,32 @@ class Watch:
         else:
             self.oled_element[10] = self.working_menu[(self.array // 6) * 6:(self.array // 6+1) * 6]
 
-
+    def message_page_scroll(self,record_list):
+        if len(record_list)==0:
+            self.oled_element[10] = ('Not loaded','or no record')
+        else:
+            lc = (len(record_list) + 5) // 6
+            if self.array == lc:
+                self.array = 0
+            elif self.array ==lc-1:
+                self.oled_element[10] = record_list[0:7]
+            else:
+                self.oled_element[10] = record_list[(-self.array * 6 - 6):len(record_list) - self.array * 6]
 
     def display_main(self):
 
         if self.state == "Low power":
             oled.poweroff()
+
         else:
             oled.poweron()
-            if self.state == "Watch":
-                oled.show()
-            elif self.state == 'Menu':
-                oled.show()
-            elif self.state =='Chat':
-                oled.show()
+            oled.contrast(int(oledcontrast*25.2)+1)
+            oled.show()
 
     def message(self, opt):
         lora_power(1)
         if opt == 's':
-            uart1.write(self.txData)
+            uart1.write(bytearray(self.txData))
         elif opt == 'r':
             self.rxData = bytes()
 
@@ -378,7 +432,9 @@ class Watch:
     def delta_t(self, start_time):
         return time.time() - start_time
 
+    # direct func name
     def server_test(self):
+        print('try to connect')
         self.txData = b'test'
         self.message('s')
         time.sleep(0.1)
@@ -387,12 +443,38 @@ class Watch:
             return True
         else:
             return False
-    def time_correction(self):
+
+    def update_time(self):
+        print('update_time')
         self.txData = b'check time'
         self.message('s')
         time.sleep(0.1)
         self.message('r')
         self.real_time_delta = float(self.rxMessage) - time.time()
+
+    def send(self):
+        # chat状态下的发送函数
+        pass
+
+    def record(self):
+        # chat状态下的查看历史记录函数
+        print('record')
+        self.array = 0
+        self.message_page_scroll(chat_record[self.target])
+        self.state = 'Record'
+
+    def load(self):
+        # chat状态下的加载历史记录函数
+        print('load start')
+        self.time_start = time.time()
+        self.txData = b'load:'+self.target.encode()
+        self.rxMessage = ''
+        self.message('s')
+        while not self.rxMessage and time.time()-self.time_start <= 5:
+            time.sleep(0.01)
+            self.message('r')
+        self.opt_back()
+        print('load end')
 
     def state_led(self, stat):
         if stat == 'idle':
@@ -404,6 +486,16 @@ class Watch:
             time.sleep(0.1)
             state_led_pin.value(0)
             time.sleep(0.1)
+
+    def column(self):
+        self.state ='Column'
+        globals()[self.working_menu[self.array].replace(' ', '')]+=1
+        if globals()[self.working_menu[self.array].replace(' ', '')] == 6:globals()[self.working_menu[self.array].replace(' ', '')] = 0
+        oled.fill(0)
+        oled.text(str(globals()[self.working_menu[self.array].replace(' ', '')]),60,30,)
+        oled.contrast(int(oledcontrast*25.2)+1)
+        oled.show()
+
 
 
 if __name__ == '__main__':
