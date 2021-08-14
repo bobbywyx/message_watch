@@ -16,10 +16,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1323">
-              <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+            <state relative-caret-position="368">
+              <caret line="227" column="75" selection-start-line="227" selection-start-column="75" selection-end-line="227" selection-end-column="75" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#9735#10034#0" />
+                <element signature="e#10069#11449#0" />
+                <element signature="e#11483#12883#0" />
+                <element signature="e#12919#15044#0" />
+                <element signature="e#15079#16482#0" />
+                <element signature="e#16524#16864#0" />
+                <element signature="e#16929#17633#0" />
+                <element signature="e#17399#17578#0" />
               </folding>
             </state>
           </provider>
@@ -46,7 +54,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
+            <state relative-caret-position="-418">
               <caret line="29" selection-start-line="29" selection-end-line="29" />
               <folding>
                 <element signature="e#57#85#0" expanded="true" />
@@ -68,6 +76,7 @@
     <findStrings>
       <find>adc</find>
       <find>print</find>
+      <find>sett</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,12 +200,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15413135" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.111228816" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30707762" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30707762" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -273,16 +282,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1323">
-          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cyber.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12528">
@@ -299,10 +298,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
+        <state relative-caret-position="-418">
           <caret line="29" selection-start-line="29" selection-end-line="29" />
           <folding>
             <element signature="e#57#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="227" column="75" selection-start-line="227" selection-start-column="75" selection-end-line="227" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#9735#10034#0" />
+            <element signature="e#10069#11449#0" />
+            <element signature="e#11483#12883#0" />
+            <element signature="e#12919#15044#0" />
+            <element signature="e#15079#16482#0" />
+            <element signature="e#16524#16864#0" />
+            <element signature="e#16929#17633#0" />
+            <element signature="e#17399#17578#0" />
           </folding>
         </state>
       </provider>
