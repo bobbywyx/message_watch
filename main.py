@@ -237,7 +237,7 @@ class Watch:
                 self.generator()
                 self.display_main()
                 time.sleep(0.1)
-                self.text_scroll_flag = [a + 1 for a in range(len(self.text_scroll_flag))]
+                self.text_scroll_flag = [a + 1 for a in self.text_scroll_flag]
             while self.state == 'Chat':
                 self.oled_element = [battery_power(), self.target, None, True, None,
                                      False, None, None, False, None, None]
@@ -248,7 +248,7 @@ class Watch:
                 self.display_main()
                 # chat模式是特殊的模式  包括了menu模式 但在聊天室里不包括menu逻辑
                 time.sleep(0.1)
-                self.text_scroll_flag = [a+1 for a in range(len(self.text_scroll_flag))]
+                self.text_scroll_flag = [a+1 for a in self.text_scroll_flag]
             while self.state == "Record":
                 self.oled_element = [battery_power(), self.target,
                                      str((len(chat_record[self.target]) + 5) // 6 - self.array) + '/' +
@@ -259,7 +259,7 @@ class Watch:
                 self.generator()
                 self.display_main()
                 time.sleep(0.1)
-                self.text_scroll_flag = [a+1 for a in range(len(self.text_scroll_flag))]
+                self.text_scroll_flag = [a+1 for a in self.text_scroll_flag]
             time.sleep(0.1)
 
     def opt(self, od):
