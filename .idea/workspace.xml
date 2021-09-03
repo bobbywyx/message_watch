@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5cde8c9b-5e0f-41e9-a475-3b430c4a0e61" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,45 +17,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="627" column="19" lean-forward="true" selection-start-line="627" selection-start-column="19" selection-end-line="627" selection-end-column="19" />
+            <state relative-caret-position="545">
+              <caret line="383" column="37" lean-forward="true" selection-start-line="383" selection-start-column="37" selection-end-line="383" selection-end-column="37" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#3483#4562#0" />
-                <element signature="e#4591#4717#0" />
-                <element signature="e#4745#4832#0" />
-                <element signature="e#4882#5138#0" />
-                <element signature="e#5260#6174#0" />
-                <element signature="e#9735#10034#0" />
-                <element signature="e#11483#12883#0" />
-                <element signature="e#16524#16864#0" />
-                <element signature="e#17399#17578#0" />
-                <element signature="e#17616#18215#0" />
-                <element signature="e#18260#18291#0" />
-                <element signature="e#18351#18677#0" />
-                <element signature="e#18714#19215#0" />
-                <element signature="e#19245#19514#0" />
-                <element signature="e#19730#20339#0" />
-                <element signature="e#20900#21327#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cyber.c">
+        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/ampy/pyboard.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12528">
-              <caret line="464" column="14" selection-start-line="464" selection-start-column="10" selection-end-line="464" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_PLUGINS_DIR$/intellij-micropython/typehints/micropython/framebuf.pyi">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1836">
-              <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
+            <state relative-caret-position="7155">
+              <caret line="266" selection-start-line="266" selection-end-line="266" />
             </state>
           </provider>
         </entry>
@@ -61,10 +38,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-418">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="243">
+              <caret line="11" selection-start-line="11" selection-end-line="15" selection-end-column="19" />
               <folding>
-                <element signature="e#57#85#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -84,6 +61,7 @@
       <find>adc</find>
       <find>sett</find>
       <find>print</find>
+      <find>eva</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -95,6 +73,9 @@
         <option value="$PROJECT_DIR$/ssd1306.py" />
         <option value="$PROJECT_DIR$/main_p.py" />
         <option value="$PROJECT_DIR$/buf" />
+        <option value="$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/ampy/pyboard.py" />
+        <option value="$PROJECT_DIR$/main_1.py" />
+        <option value="$PROJECT_DIR$/buffers/01" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -129,7 +110,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.micropython.configurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -149,15 +130,27 @@
     </option>
   </component>
   <component name="RunManager" selected="MicroPython.Flash main.py">
+    <configuration name="Flash 0 (1)" type="MicroPythonConfigurationType" factoryName="MicroPython" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/0">
+      <module name="pico_charm" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Flash 0" type="MicroPythonConfigurationType" factoryName="MicroPython" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/buffers/0">
+      <module name="pico_charm" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Flash 0.pbm (1)" type="MicroPythonConfigurationType" factoryName="MicroPython" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/0.pbm">
+      <module name="pico_charm" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Flash 0.pbm" type="MicroPythonConfigurationType" factoryName="MicroPython" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/buffers/0.pbm">
+      <module name="pico_charm" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Flash main_1.py" type="MicroPythonConfigurationType" factoryName="MicroPython" nameIsGenerated="true" path="$PROJECT_DIR$/main_1.py">
+      <module name="pico_charm" />
+      <method v="2" />
+    </configuration>
     <configuration name="Flash main.py" type="MicroPythonConfigurationType" factoryName="MicroPython" nameIsGenerated="true" path="$PROJECT_DIR$/main.py">
-      <module name="pico_charm" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Flash sh1106.py" type="MicroPythonConfigurationType" factoryName="MicroPython" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/sh1106.py">
-      <module name="pico_charm" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Flash ssd1306.py" type="MicroPythonConfigurationType" factoryName="MicroPython" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/ssd1306.py">
       <module name="pico_charm" />
       <method v="2" />
     </configuration>
@@ -184,9 +177,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="MicroPython.Flash 0.pbm (1)" />
+        <item itemvalue="MicroPython.Flash 0 (1)" />
+        <item itemvalue="MicroPython.Flash 0" />
+        <item itemvalue="MicroPython.Flash 0.pbm" />
         <item itemvalue="Python.pyboard" />
-        <item itemvalue="MicroPython.Flash ssd1306.py" />
-        <item itemvalue="MicroPython.Flash sh1106.py" />
       </list>
     </recent_temporary>
   </component>
@@ -206,7 +201,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.111228816" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.111228816" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -218,7 +213,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.24429224" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.24200913" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32915717" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -243,38 +238,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sh1106.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="209" column="8" selection-start-line="209" selection-start-column="8" selection-end-line="209" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_PLUGINS_DIR$/intellij-micropython/typehints/micropython/machine.pyi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="408" column="27" selection-start-line="408" selection-start-column="27" selection-end-line="408" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/menu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1215">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/buf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3105">
-          <caret line="115" column="1" selection-start-line="115" selection-start-column="1" selection-end-line="115" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/ampy/pyboard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1202">
-          <caret line="150" column="20" lean-forward="true" selection-start-line="150" selection-start-column="20" selection-end-line="150" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -288,6 +255,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_PLUGINS_DIR$/intellij-micropython/scripts/microupload.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="125" column="35" selection-start-line="125" selection-start-column="35" selection-end-line="125" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imgs/01" />
     <entry file="file://$PROJECT_DIR$/cyber.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12528">
@@ -295,45 +270,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/buffers/01" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/ampy/files.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1973">
+          <caret line="214" column="44" selection-start-line="214" selection-start-column="44" selection-end-line="214" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sh1106.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="141" column="8" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$APPLICATION_PLUGINS_DIR$/intellij-micropython/typehints/micropython/framebuf.pyi">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
+        <state relative-caret-position="542">
           <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/menu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1729">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2047">
+          <caret line="115" column="1" selection-start-line="115" selection-start-column="1" selection-end-line="115" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buffers/0" />
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="383" column="37" lean-forward="true" selection-start-line="383" selection-start-column="37" selection-end-line="383" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/ampy/pyboard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7155">
+          <caret line="266" selection-start-line="266" selection-end-line="266" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-418">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#57#85#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="627" column="19" lean-forward="true" selection-start-line="627" selection-start-column="19" selection-end-line="627" selection-end-column="19" />
+        <state relative-caret-position="243">
+          <caret line="11" selection-start-line="11" selection-end-line="15" selection-end-column="19" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#3483#4562#0" />
-            <element signature="e#4591#4717#0" />
-            <element signature="e#4745#4832#0" />
-            <element signature="e#4882#5138#0" />
-            <element signature="e#5260#6174#0" />
-            <element signature="e#9735#10034#0" />
-            <element signature="e#11483#12883#0" />
-            <element signature="e#16524#16864#0" />
-            <element signature="e#17399#17578#0" />
-            <element signature="e#17616#18215#0" />
-            <element signature="e#18260#18291#0" />
-            <element signature="e#18351#18677#0" />
-            <element signature="e#18714#19215#0" />
-            <element signature="e#19245#19514#0" />
-            <element signature="e#19730#20339#0" />
-            <element signature="e#20900#21327#0" />
           </folding>
         </state>
       </provider>
