@@ -7,7 +7,6 @@ from machine import Pin, UART, I2C, PWM, ADC
 import _thread as threading  # 因为micro python里面没有threading库  已经写好的class直接套用_thread
 import framebuf
 
-
 # import gc
 
 
@@ -16,11 +15,9 @@ import framebuf
 WIDTH = 128
 HEIGHT = 64
 
-i2c = machine.I2C(scl=machine.Pin(21), sda=machine.Pin(22))
-# old on rp2040    i2c = I2C(0)  # Init I2C using I2C0 defaults,SCL=Pin(GP9), SDA=Pin(GP8), freq=400000
+i2c = I2C(0)  # Init I2C using I2C0 defaults,SCL=Pin(GP9), SDA=Pin(GP8), freq=400000
 # oled = SSD1306_I2C(WIDTH, HEIGHT, i2c)  # Init oled display
 oled = SH1106_I2C(WIDTH, HEIGHT, i2c)  # Init oled display
-
 oled.flip(2)
 oled.poweron()
 oled.fill(0)
@@ -37,18 +34,18 @@ lora_addr = b'00'
 lora_tul = b'00'
 device_name = "wyx"
 
-state_led_pin = Pin(11, Pin.OUT)
+state_led_pin = Pin(25, Pin.OUT)
 state_led_pin.value(0)
 state_led = 0
 
-uart1 = UART(2, baudrate=9600, tx=Pin(12), rx=Pin(13))
-uart1_power_pin = Pin(19, Pin.OUT)
+uart1 = UART(0, baudrate=9600, tx=Pin(12), rx=Pin(13))
+uart1_power_pin = Pin(15, Pin.OUT)
 
-back_button = Pin(14, Pin.IN, Pin.PULL_UP)
-navi_button = Pin(13, Pin.IN, Pin.PULL_UP)
-enter_button = Pin(12, Pin.IN, Pin.PULL_UP)
+back_button = Pin(5, Pin.IN, Pin.PULL_UP)
+navi_button = Pin(4, Pin.IN, Pin.PULL_UP)
+enter_button = Pin(3, Pin.IN, Pin.PULL_UP)
 
-voltage_sense = ADC(9)
+voltage_sense = ADC(27)
 conversion_factor = 3.3 / (65535)
 
 '''
@@ -57,7 +54,7 @@ timer2 = Timer(2,freq=100)
 motor1 = timer2.channel(1,Timer.PWM,pin=motorpin)
 motor1.pulse_width_percent(10)
 '''
-motorpin = PWM(Pin(23))
+motorpin = PWM(Pin(22))
 motorpin.freq(100)
 motorpin.duty_u16(30000)
 sound = 3
@@ -107,7 +104,7 @@ in_built_message = (
 )
 
 # menus
-menu_watch = ('update time','watch video')
+menu_watch = ('update time','watch video',)
 menu_message = ('All', 'ls', 'ry', 'settings',)
 menu_settings = ('oled contrast', 'sound', 'move', 'server test')
 menu_chat = ('send', 'record', 'load')
@@ -176,6 +173,7 @@ def removing_joggle(old=utime.ticks_ms()):
     else:
         # print('no joggle')
         return True
+
 
 
 # system

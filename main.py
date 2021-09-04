@@ -2,23 +2,32 @@ import time
 import utime
 # from ssd1306 import SSD1306_I2C
 from sh1106 import SH1106_I2C
-from machine import Pin, UART, I2C, PWM, ADC
+import machine
+from machine import Pin, UART, I2C, PWM, ADC,WDT
 # from main_1 import V
 import _thread as threading  # 因为micro python里面没有threading库  已经写好的class直接套用_thread
 import framebuf
-import network
+# import network
+
+
 
 # import gc
 
-
+# wdt =WDT(timeout=100000)
+# wdt.feed()
 # config
 
 WIDTH = 128
 HEIGHT = 64
 
-i2c = I2C(0)  # Init I2C using I2C0 defaults,SCL=Pin(GP9), SDA=Pin(GP8), freq=400000
+uart1 = UART(2, baudrate=9600, tx=12, rx=13)
+uart1_power_pin = Pin(19, Pin.OUT)
+
+i2c = machine.SoftI2C(scl=machine.Pin(22), sda=machine.Pin(21),)
+# old on rp2040    i2c = I2C(0)  # Init I2C using I2C0 defaults,SCL=Pin(GP9), SDA=Pin(GP8), freq=400000
 # oled = SSD1306_I2C(WIDTH, HEIGHT, i2c)  # Init oled display
-oled = SH1106_I2C(WIDTH, HEIGHT, i2c)  # Init oled display
+oled = SH1106_I2C(WIDTH, HEIGHT, i2c,)  # Init oled display
+
 oled.flip(2)
 oled.poweron()
 oled.fill(0)
@@ -35,18 +44,17 @@ lora_addr = b'00'
 lora_tul = b'00'
 device_name = "wyx"
 
-state_led_pin = Pin(25, Pin.OUT)
+state_led_pin = Pin(11, Pin.OUT)
 state_led_pin.value(0)
 state_led = 0
 
-uart1 = UART(0, baudrate=9600, tx=Pin(12), rx=Pin(13))
-uart1_power_pin = Pin(15, Pin.OUT)
 
-back_button = Pin(5, Pin.IN, Pin.PULL_UP)
-navi_button = Pin(4, Pin.IN, Pin.PULL_UP)
-enter_button = Pin(3, Pin.IN, Pin.PULL_UP)
 
-voltage_sense = ADC(27)
+back_button = Pin(14, Pin.IN, Pin.PULL_UP)
+navi_button = Pin(13, Pin.IN, Pin.PULL_UP)
+enter_button = Pin(12, Pin.IN, Pin.PULL_UP)
+
+voltage_sense = ADC(9)
 conversion_factor = 3.3 / (65535)
 
 '''
@@ -55,7 +63,7 @@ timer2 = Timer(2,freq=100)
 motor1 = timer2.channel(1,Timer.PWM,pin=motorpin)
 motor1.pulse_width_percent(10)
 '''
-motorpin = PWM(Pin(22))
+motorpin = PWM(Pin(23))
 motorpin.freq(100)
 motorpin.duty_u16(30000)
 sound = 3
@@ -105,7 +113,7 @@ in_built_message = (
 )
 
 # menus
-menu_watch = ('update time','watch video','wifi time')
+menu_watch = ('update time','watch video')
 menu_message = ('All', 'ls', 'ry', 'settings',)
 menu_settings = ('oled contrast', 'sound', 'move', 'server test')
 menu_chat = ('send', 'record', 'load')
@@ -114,8 +122,47 @@ direct_func_names = ('update_time','server_test', 'send', 'record', 'load')  # �
 other_func = ('watch_video')
 day_week = ('Mon', "Tue", "Wed", "Thur", "Fri", "Sat", "Sun")
 
+'''
+def wifi_connect():
+    wifi_led = state_led_pin  # 板载指示灯初始化
+    wlan = network.WLAN(network.STA_IF)  # 以工作站 (wlan) 模式运行，需要创建一个工作站Wi-Fi接口的实例
+    wlan.active(True)  # 在工作站对象上调用激活方法并以True作为输入值传递来激活网络接口
+    start_time = time.time()  # 记录开始时间
 
+    if not wlan.isconnected():  # 如果尚未联网成功
+        print("当前无线未联网，正在连接中....")
+        wlan.connect("110-0-11", "19921227")  # 无线网SSID、密码，开始联网
+        while not wlan.isconnected():  # 如果还未连接成功，则LED灯闪烁提示
+            wifi_led.value(1)
+            time.sleep(1)
+            wifi_led.value(1)
+            time.sleep(1)
+            print("正在尝试连接到wifi....")
+            print(time.time())
 
+            if time.time() - start_time > 15:  # 如果超过15秒还不行，就退出
+                print("连接失败!!!无线网连接超过15秒，请检查无线网名称和密码是否正确..")
+                oled.fill(0)
+                oled.text('wifi not connected', 0, 0, 1)
+                oled.show()
+                time.sleep(1)
+                break
+
+    if wlan.isconnected():  # 如果联接成功
+        oled.fill(0)
+        oled.text('wifi connected', 0, 0, 1)
+        oled.show()
+        time.sleep(1)
+        wifi_led.value(1)  # LED灯常亮
+        IP_info = wlan.ifconfig()
+        print("无线网已经连接，信息如下：")
+        print("IP地址：" + IP_info[0])
+        print("子网掩码：" + IP_info[1])
+        print("网关：" + IP_info[2])
+        print("DNS：" + IP_info[3])
+'''
+
+# 开始执行联网模块
 
 class EventManager:
     def __init__(self):
@@ -175,37 +222,6 @@ def removing_joggle(old=utime.ticks_ms()):
         # print('no joggle')
         return True
 
-def wifi_connect():
-  wifi_led=Pin(2,Pin.OUT)             # 板载指示灯初始化
-  wlan = network.WLAN(network.STA_IF)  # 以工作站 (wlan) 模式运行，需要创建一个工作站Wi-Fi接口的实例
-  wlan.active(True)                    # 在工作站对象上调用激活方法并以True作为输入值传递来激活网络接口
-  start_time=time.time()               # 记录开始时间
-  
-  if not wlan.isconnected():              # 如果尚未联网成功
-    print("当前无线未联网，正在连接中....")  
-    wlan.connect("110-0-11", "19921227")   # 无线网SSID、密码，开始联网
-    while not wlan.isconnected():         # 如果还未连接成功，则LED灯闪烁提示
-      wifi_led.value(1)
-      time.sleep_ms(1000)
-      wifi_led.value(1)
-      time.sleep_ms(1000) 
-      print("正在尝试连接到wifi....")
-      print(time.time())
-      
-      if time.time()-start_time>15:       # 如果超过15秒还不行，就退出
-        print("连接失败!!!无线网连接超过15秒，请检查无线网名称和密码是否正确..")
-        break
-        
-  if wlan.isconnected():                  # 如果联接成功
-    wifi_led.value(1)                     # LED灯常亮
-    IP_info=wlan.ifconfig()    
-    print("无线网已经连接，信息如下：")
-    print("IP地址："+IP_info[0])
-    print("子网掩码："+IP_info[1])
-    print("网关："+IP_info[2])
-    print("DNS："+IP_info[3])
-
-#开始执行联网模块
 
 # system
 class Watch:
@@ -238,6 +254,7 @@ class Watch:
         self.opt(0)
         while True:
             while self.state == "Low power":
+#                 wdt.feed()
                 # print('lowpower mode')
                 self.display_main()
                 time.sleep(0.5)
@@ -252,6 +269,7 @@ class Watch:
                     if not self.rxMessage:
                         self.state_led('message')
             while self.state == "Watch":
+#                 wdt.feed()
                 # print('watch mode')
                 timenow = time.localtime(time.time() + self.real_time_delta)
                 self.oled_element = [battery_power(), 'wyx',
@@ -262,6 +280,7 @@ class Watch:
                 time.sleep(0.1)
                 # print(timenow)
             while self.state == "Message":
+#                 wdt.feed()
                 self.oled_element = [battery_power(), 'wyx', None, True, None,
                                      False, None, None, False, None, None]
                 if self.is_connected:
@@ -281,6 +300,7 @@ class Watch:
                 lora_power(1)
 
             while self.state == 'Menu':
+                wdt.feed()
                 # 进入menu之前要进行配置 包括father_dir  working_menu state  array提前归零
                 # 配置menu对象 通常是list或者tuple  同时要配置oled_element
                 # menu模式有单独的渲染逻辑
@@ -291,6 +311,7 @@ class Watch:
                 time.sleep(0.1)
                 self.text_scroll_flag = [a + 1 for a in self.text_scroll_flag]
             while self.state == 'Chat':
+#                 wdt.feed()
                 self.oled_element = [battery_power(), self.target, None, True, None,
                                      False, None, None, False, None, None]
 
@@ -302,6 +323,7 @@ class Watch:
                 time.sleep(0.1)
                 self.text_scroll_flag = [a + 1 for a in self.text_scroll_flag]
             while self.state == "Record":
+#                 wdt.feed()
                 self.oled_element = [battery_power(), self.target,
                                      str((len(chat_record[self.target]) + 2) // 3 - self.array) + '/' +
                                      str((len(chat_record[self.target]) + 2) // 3),
@@ -314,6 +336,7 @@ class Watch:
                 self.text_scroll_flag = [a + 1 for a in self.text_scroll_flag]
             time.sleep(0.1)
             while self.state == 'Other':
+#                 wdt.feed()
                 #其他功能渲染模式
                 # self.oled_element=[None, None, None, False, None,
                 #              False, False, False, False, None, None]
@@ -654,17 +677,21 @@ class Watch:
             oled.show()
             time.sleep(1)
             self.opt_back()
-    
+
     def wifi_time(self):
+        pass
+        '''
         # micropython 校时程序  (注意，必须先联网成功后，才能校时成功！！！)
+        wifi_connect()
+
         print("同步前本地时间：%s" %str(time.localtime()))
         ntptime.NTP_DELTA = 3155644800    # 设置  UTC+8偏移时间（秒），不设置就是UTC0
         ntptime.host = 'ntp1.aliyun.com'  # 可选ntp服务器为阿里云服务器，默认是"pool.ntp.org"
         ntptime.settime()                 # 修改设备时间,到这就已经设置好了
         print("同步后本地时间：%s" %str(time.localtime()))
         self.real_time_delta = 0
-    
-    
+        '''
+
     def send(self):
         # chat状态下的发送函数
         self.oled_element = [battery_power(), self.target, None, True, None,
