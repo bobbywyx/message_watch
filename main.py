@@ -20,7 +20,7 @@ import framebuf
 WIDTH = 128
 HEIGHT = 64
 
-uart1 = UART(2, baudrate=9600, tx=12, rx=13)
+uart1 = UART(2, baudrate=9600, tx=17, rx=16)
 uart1_power_pin = Pin(19, Pin.OUT)
 
 i2c = machine.SoftI2C(scl=machine.Pin(22), sda=machine.Pin(21),)
@@ -44,17 +44,17 @@ lora_addr = b'00'
 lora_tul = b'00'
 device_name = "wyx"
 
-state_led_pin = Pin(11, Pin.OUT)
+state_led_pin = Pin(26, Pin.OUT)
 state_led_pin.value(0)
 state_led = 0
 
 
 
-back_button = Pin(14, Pin.IN, Pin.PULL_UP)
-navi_button = Pin(13, Pin.IN, Pin.PULL_UP)
-enter_button = Pin(12, Pin.IN, Pin.PULL_UP)
+back_button = Pin(12, Pin.IN, Pin.PULL_UP)
+navi_button = Pin(14, Pin.IN, Pin.PULL_UP)
+enter_button = Pin(27, Pin.IN, Pin.PULL_UP)
 
-voltage_sense = ADC(9)
+voltage_sense = ADC(Pin(33))
 conversion_factor = 3.3 / (65535)
 
 '''
@@ -65,7 +65,7 @@ motor1.pulse_width_percent(10)
 '''
 motorpin = PWM(Pin(23))
 motorpin.freq(100)
-motorpin.duty_u16(30000)
+motorpin.duty(30000)
 sound = 3
 move = 3
 
@@ -113,13 +113,13 @@ in_built_message = (
 )
 
 # menus
-menu_watch = ('update time','watch video')
+menu_watch = ('update time','watch video','manual update')
 menu_message = ('All', 'ls', 'ry', 'settings',)
 menu_settings = ('oled contrast', 'sound', 'move', 'server test')
 menu_chat = ('send', 'record', 'load')
 
-direct_func_names = ('update_time','server_test', 'send', 'record', 'load')  # 函数本身和显示函数名只有空格和下划线差距的函数
-other_func = ('watch_video')
+direct_func_names = ('update_time','server_test', 'send', 'record', 'load',)  # 函数本身和显示函数名只有空格和下划线差距的函数
+other_func = ('watch_video','manual_update')
 day_week = ('Mon', "Tue", "Wed", "Thur", "Fri", "Sat", "Sun")
 
 '''
@@ -247,6 +247,9 @@ class Watch:
         self.oled_element = [None, None, None, False, None,
                              False, False, False, False, None, None]
         self.target_other_func=None
+        self.re_enter = 0
+        self.opt_navi_is_pressed = 0
+        self.opt_enter_is_pressed = 0
         # 'headleft' 'headmid' 'headright' 'headdivide' 'highlighter'
         #  'midlrchange' 'midtime' 'middate'  'middivide' 'midgfc' 'menu'
 
@@ -300,7 +303,7 @@ class Watch:
                 lora_power(1)
 
             while self.state == 'Menu':
-                wdt.feed()
+#                 wdt.feed()
                 # 进入menu之前要进行配置 包括father_dir  working_menu state  array提前归零
                 # 配置menu对象 通常是list或者tuple  同时要配置oled_element
                 # menu模式有单独的渲染逻辑
@@ -340,7 +343,9 @@ class Watch:
                 #其他功能渲染模式
                 # self.oled_element=[None, None, None, False, None,
                 #              False, False, False, False, None, None]
+                print('if re enterred',self.re_enter)
                 self.target_other_func()
+                self.re_enter=0
                 print('other state')
 
 
@@ -437,6 +442,7 @@ class Watch:
                 self.menu_page_scroll()
             elif self.state=='Other':
                 self.state= self.father_dir
+                self.re_enter = 1
         self.opt(1)
 
     def opt_enter(self):
@@ -486,7 +492,11 @@ class Watch:
                     # eval('watch.' + target.replace(' ', '_') + '()')
                     self.target_other_func = getattr(self,target.replace(' ', '_'))
                     self.state='Other'
-
+                    #上一行禁用掉是因为避免出现other不知道自己退出重新进入，所以
+                    #所有other函数麻烦自己重新定义一下state
+                    #重新写一下，因为不进入其他模式会有奇怪的函数无法运行bug，所以还是启用上一行
+                    #为了解决不知道重新进入的问题，请使用self.re_enter来判断，0是没有，1是有重新进入
+                    #不过从other func退出时，系统会自动把re_enter归为1，所以请other func自己判断吧
                 elif target == 'settings':
                     self.oled_element = [battery_power(), 'config', None, True, None,
                                          False, None, None, False, None, None]
@@ -503,7 +513,8 @@ class Watch:
                     if self.target in self.new_message_targets:
                         self.new_message_targets.remove(self.target)
                     self.array = -1
-
+            elif self.state=='Other':
+                self.opt_enter_is_pressed=1
         self.opt(1)
 
     def opt_navi(self):
@@ -543,6 +554,8 @@ class Watch:
                 self.menu_page_scroll()
             elif self.state == "Record":
                 self.array += 1
+            elif self.state=='Other':
+                self.opt_navi_is_pressed = 1
         self.opt(1)
 
     def menu_page_scroll(self):
@@ -642,10 +655,12 @@ class Watch:
         global frame_counter
         if frame_counter is None:
             frame_counter = 0
+        elif frame_counter>=280 and self.re_enter == 1:
+            frame_counter = 0
         else:frame_counter+=1
         self.state='Other'
         self.father_dir='Watch'
-        if frame_counter<315:
+        if frame_counter<311:
             dirt = '/buffers/' + str(frame_counter *12) + '.pbm'
             with open(dirt, 'rb') as f:
                 f.readline()
@@ -659,9 +674,10 @@ class Watch:
                 time.sleep(0.35)
         else:
             frame_counter = None
+            self.re_enter =0
             self.state='Watch'
 
-
+    
     def update_time(self):
         print('update_time')
         self.txData = bytearray(server_addr + b'/' + lora_tul + b'/' +
@@ -678,6 +694,36 @@ class Watch:
             time.sleep(1)
             self.opt_back()
 
+    def manual_update(self):
+        self.real_time_delta=0
+
+        for i in range(6):
+            while(True):
+                oled.fill(0)
+                timenow = time.localtime(time.time() + self.real_time_delta)
+                self.oled_element = [str(i), 'update',
+                                 None, False, None,
+                                 False, timenow, timenow, False, None, None]
+                self.generator()
+                oled.show()
+                time.sleep(0.1)
+                if self.opt_enter_is_pressed:
+                    self.opt_enter_is_pressed=0
+                    break
+                if self.opt_navi_is_pressed:
+                    self.opt_navi_is_pressed=0
+                    if i==0: self.real_time_delta+=3600
+                    elif i==1:self.real_time_delta+=60
+                    elif i==2:self.real_time_delta+=1
+                    elif i==3:self.real_time_delta+=31536000
+                    elif i==4:self.real_time_delta+=2592000
+                    elif i==5:self.real_time_delta+=86400
+        self.state='Watch'
+
+
+
+            
+    
     def wifi_time(self):
         pass
         '''
