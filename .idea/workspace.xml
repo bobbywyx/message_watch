@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5cde8c9b-5e0f-41e9-a475-3b430c4a0e61" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/time_fonts/colon" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -13,11 +14,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cyber.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="9639">
+              <caret line="357" selection-start-line="357" selection-end-line="361" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="708" column="31" lean-forward="true" selection-start-line="708" selection-start-column="31" selection-end-line="708" selection-end-column="31" />
+            <state relative-caret-position="-108">
+              <caret line="283" column="16" lean-forward="true" selection-start-line="283" selection-start-column="16" selection-end-line="283" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -55,6 +77,17 @@
         <option value="$PROJECT_DIR$/main_1.py" />
         <option value="$PROJECT_DIR$/buffers/01" />
         <option value="$PROJECT_DIR$/main_.py" />
+        <option value="$PROJECT_DIR$/time_fonts/0" />
+        <option value="$PROJECT_DIR$/time_fonts/1" />
+        <option value="$PROJECT_DIR$/time_fonts/2" />
+        <option value="$PROJECT_DIR$/time_fonts/3" />
+        <option value="$PROJECT_DIR$/time_fonts/4" />
+        <option value="$PROJECT_DIR$/time_fonts/5" />
+        <option value="$PROJECT_DIR$/time_fonts/6" />
+        <option value="$PROJECT_DIR$/time_fonts/7" />
+        <option value="$PROJECT_DIR$/time_fonts/8" />
+        <option value="$PROJECT_DIR$/time_fonts/9" />
+        <option value="$PROJECT_DIR$/time_fonts/colon" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -72,7 +105,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -80,14 +112,21 @@
               <item name="pico_charm" type="b2602c69:ProjectViewProjectNode" />
               <item name="pico_charm" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="pico_charm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pico_charm" type="462c0819:PsiDirectoryNode" />
+              <item name="time_fonts" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowStructure.ShowToolbar" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.micropython.configurable" />
   </component>
@@ -164,6 +203,9 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_FIELDS" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -177,27 +219,55 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.111228816" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4977169" visible="true" weight="0.109375" />
+      <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.22146119" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30407524" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32990867" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32990867" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.24200913" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32915717" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32876712" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Structure" order="3" sideWeight="0.5022831" weight="0.09213362" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4977169" visible="true" weight="0.1012931" />
+      <window_info id="Favorites" order="1" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30407524" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32990867" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32990867" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.24200913" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32876712" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Structure" order="3" sideWeight="0.5022831" visible="true" weight="0.09213362" />
+    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/time.pyi">
@@ -242,13 +312,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imgs/01" />
-    <entry file="file://$PROJECT_DIR$/cyber.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12528">
-          <caret line="464" column="14" selection-start-line="464" selection-start-column="10" selection-end-line="464" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/buffers/01" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/ampy/files.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -278,13 +341,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/buf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2047">
-          <caret line="115" column="1" selection-start-line="115" selection-start-column="1" selection-end-line="115" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/buffers/0" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/ampy/pyboard.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -294,16 +350,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main_.py" />
-    <entry file="file://$PROJECT_DIR$/main_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" selection-start-line="11" selection-end-line="15" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main_rp2040.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -313,10 +359,121 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2019.1/system/python_stubs/1447634930/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="816" column="8" selection-start-line="816" selection-start-column="8" selection-end-line="816" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buffers/12.pbm">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="115" column="1" selection-start-line="115" selection-start-column="1" selection-end-line="115" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="238" selection-start-column="238" selection-end-column="238" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/0">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="253" selection-start-column="253" selection-end-column="253" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="237" selection-start-column="237" selection-end-column="237" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/3">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="230" selection-start-column="230" selection-end-column="230" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="247" selection-start-column="247" selection-end-column="247" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/5">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="237" selection-start-column="237" selection-end-column="237" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/6">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="249" selection-start-column="249" selection-end-column="249" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/7">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="226" selection-start-column="226" selection-end-column="226" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/8">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="254" selection-start-column="254" selection-end-column="254" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/9">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="240" selection-start-column="240" selection-end-column="240" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/time_fonts/colon">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="203" selection-start-column="203" selection-end-column="203" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cyber.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9639">
+          <caret line="357" selection-start-line="357" selection-end-line="361" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="708" column="31" lean-forward="true" selection-start-line="708" selection-start-column="31" selection-end-line="708" selection-end-column="31" />
+        <state relative-caret-position="-108">
+          <caret line="283" column="16" lean-forward="true" selection-start-line="283" selection-start-column="16" selection-end-line="283" selection-end-column="16" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
