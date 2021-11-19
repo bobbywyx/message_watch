@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5cde8c9b-5e0f-41e9-a475-3b430c4a0e61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/time_fonts/colon" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lora_config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/other_funcs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/watch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,10 +19,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cyber.c">
+        <entry file="file://$PROJECT_DIR$/other_funcs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9639">
-              <caret line="357" selection-start-line="357" selection-end-line="361" />
+            <state relative-caret-position="81">
+              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -26,22 +30,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-108">
-              <caret line="283" column="16" lean-forward="true" selection-start-line="283" selection-start-column="16" selection-end-line="283" selection-end-column="16" />
+            <state relative-caret-position="296">
+              <caret line="754" column="18" selection-start-line="754" selection-start-column="18" selection-end-line="754" selection-end-column="18" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main_1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#2022#2155#0" />
+                <element signature="e#2194#3799#0" />
+                <element signature="e#2195#2304#0" />
               </folding>
             </state>
           </provider>
@@ -62,6 +57,15 @@
       <find>sett</find>
       <find>print</find>
       <find>eva</find>
+      <find>rt</find>
+      <find>confi</find>
+      <find>rtc</find>
+      <find>array</find>
+      <find>.array</find>
+      <find>.ol</find>
+      <find>oled.</find>
+      <find>123456</find>
+      <find>oled</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -74,7 +78,6 @@
         <option value="$PROJECT_DIR$/main_p.py" />
         <option value="$PROJECT_DIR$/buf" />
         <option value="$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/ampy/pyboard.py" />
-        <option value="$PROJECT_DIR$/main_1.py" />
         <option value="$PROJECT_DIR$/buffers/01" />
         <option value="$PROJECT_DIR$/main_.py" />
         <option value="$PROJECT_DIR$/time_fonts/0" />
@@ -88,6 +91,12 @@
         <option value="$PROJECT_DIR$/time_fonts/8" />
         <option value="$PROJECT_DIR$/time_fonts/9" />
         <option value="$PROJECT_DIR$/time_fonts/colon" />
+        <option value="$PROJECT_DIR$/lora_config.py" />
+        <option value="$PROJECT_DIR$/config" />
+        <option value="$PROJECT_DIR$/config.json" />
+        <option value="$PROJECT_DIR$/watch.py" />
+        <option value="$PROJECT_DIR$/main_1.py" />
+        <option value="$PROJECT_DIR$/other_funcs.py" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -105,6 +114,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -112,16 +122,10 @@
               <item name="pico_charm" type="b2602c69:ProjectViewProjectNode" />
               <item name="pico_charm" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="pico_charm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pico_charm" type="462c0819:PsiDirectoryNode" />
-              <item name="time_fonts" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -230,11 +234,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4977169" visible="true" weight="0.109375" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4977169" visible="true" weight="0.10506465" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32990867" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.30407524" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -247,13 +252,13 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Structure" order="3" sideWeight="0.5022831" weight="0.09213362" />
+      <window_info anchor="right" id="Structure" order="3" sideWeight="0.5022831" weight="0.06573276" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4977169" visible="true" weight="0.1012931" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4977169" visible="true" weight="0.10506465" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32990867" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.30407524" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -266,7 +271,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Structure" order="3" sideWeight="0.5022831" visible="true" weight="0.09213362" />
+      <window_info anchor="right" id="Structure" order="3" sideWeight="0.5022831" visible="true" weight="0.06573276" />
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
@@ -291,16 +296,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="408" column="27" selection-start-line="408" selection-start-column="27" selection-end-line="408" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssd1306.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="916">
-          <caret line="94" column="8" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="8" />
-          <folding>
-            <element signature="e#59#88#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -350,15 +345,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main_.py" />
-    <entry file="file://$PROJECT_DIR$/main_rp2040.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2019.1/system/python_stubs/1447634930/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
@@ -453,6 +439,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config" />
+    <entry file="file://$PROJECT_DIR$/ssd1306.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="94" column="8" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="8" />
+          <folding>
+            <element signature="e#59#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cyber.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9639">
@@ -460,22 +457,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        <state relative-caret-position="54">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lora_config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="754">
+          <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_rp2040.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2511">
+          <caret line="108" column="56" selection-start-line="108" selection-start-column="56" selection-end-line="108" selection-end-column="56" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/watch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-108">
-          <caret line="283" column="16" lean-forward="true" selection-start-line="283" selection-start-column="16" selection-end-line="283" selection-end-column="16" />
+        <state relative-caret-position="-6396">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#238#1477#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/other_funcs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="754" column="18" selection-start-line="754" selection-start-column="18" selection-end-line="754" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#2022#2155#0" />
+            <element signature="e#2194#3799#0" />
+            <element signature="e#2195#2304#0" />
           </folding>
         </state>
       </provider>
