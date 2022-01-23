@@ -7,7 +7,7 @@ from machine import Pin, UART, I2C, PWM, ADC, WDT, RTC
 # from main_1 import V
 import _thread as threading  # 因为micro python里面没有threading库  已经写好的class直接套用_thread
 import framebuf
-import other_funcs
+# import other_funcs
 import json
 import esp32
 
@@ -118,7 +118,8 @@ in_built_message = (
 )
 
 # menus
-menu_watch = ('update time', 'manual update', 'watch video', 'timer', 'random number', 'count down', 'class schedule')
+menu_watch = (
+'ctd_cee', 'update time', 'manual update', 'watch video', 'timer', 'random number', 'count down', 'class schedule')
 menu_class_schedule = ('Mon', 'Tue', 'Wed', 'Thur', 'Fri')
 menu_Mon = ('Chinese', 'Maths', 'English', 'Physics', 'Chemistry', 'Biology', 'Sports', 'Arts')
 menu_message = ('All', 'ls', 'ry', 'settings')
@@ -127,7 +128,7 @@ menu_chat = ('send', 'record', 'load')
 menu_info = ()
 
 direct_func_names = ('update_time', 'server_test', 'send', 'record', 'load')  # 函数本身和显示函数名只有空格和下划线差距的函数
-other_func = ('watch_video', 'manual_update', 'timer', 'random_number', 'count_down')
+other_func = ('ctd_cee', 'watch_video', 'manual_update', 'timer', 'random_number', 'count_down')
 day_week = ('Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun')
 
 
@@ -208,7 +209,7 @@ class Watch:
         self.target = None  # lora聊天对象
 
         self.rxMessage = ''  # 翻译后lora收到的信息
-        self.real_time_delta = 1631412287 - time.time() + 28800 - 946684800  # 手表自带rtc与真正的rtc时差
+        self.real_time_delta = 1642861815 - time.time() + 28800 - 946684800  # 手表自带rtc与真正的rtc时差
         # 28800是+8时区 946684800是2000年和1970年时间戳差值
         self.father_dir = None
         self.working_menu = None
@@ -742,6 +743,26 @@ class Watch:
             frame_counter = None
             self.re_enter = 0
             self.state = 'Watch'
+
+    def ctd_cee(self):
+        print('cee ctd coming')
+        self.father_dir = 'Watch'
+        self.oled.fill(0)
+        while not self.opt_enter_is_pressed:
+            if self.opt_navi_is_pressed:
+                self.opt_navi_is_pressed = 0
+            CME_day = (1654444800 - (time.time() + self.real_time_delta + 946684800)) // 86400 + 2
+            PC_day = (1651852800 - (time.time() + self.real_time_delta + 946684800)) // 86400 + 2
+            self.oled.text('P&C:', 0, 0)
+            self.oled.text(str(PC_day), 0, 8)
+            self.oled.text('CME:', 0, 16)
+            self.oled.text(str(CME_day), 0, 24)
+            self.oled.text('STRONGER THAN', 0, 40)
+            self.oled.text('YESTERDAY', 0, 48)
+            self.oled.show()
+            time.sleep(1)
+        self.opt_enter_is_pressed = 0
+        self.state = 'Watch'
 
     def timer(self):
         print('others')

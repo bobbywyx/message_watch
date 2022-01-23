@@ -1,4 +1,4 @@
-other_funcs = ('func1', 'func2')
+other_funcs = ('func1', 'ctd_to_cee')
 
 
 # example:
@@ -11,3 +11,8 @@ def func1(watch):
     watch.time.sleep(2)
     watch.oled.fill(0)
     watch.state = 'Watch'
+
+
+def ctd_to_cee(watch):
+    print('others')
+    watch.oled.fill(0)

@@ -583,7 +583,6 @@ class Watch:
         else:
             return False
 
-
     def watch_video(self):
         global frame_counter
         if frame_counter is None:
